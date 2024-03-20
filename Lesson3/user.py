@@ -16,7 +16,7 @@ class User:
         
 
 
-user = User("Иван", "Петров")
-user.print_first_name()
-user.print_last_name()
-user.print_full_name()
+#user = User("Иван", "Петров")
+#user.print_first_name()
+#user.print_last_name()
+#user.print_full_name()

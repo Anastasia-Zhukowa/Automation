@@ -14,7 +14,7 @@ class Smartphone:
     def print_number(self):
         print(f"Абонентский номер: {self.number}")
         
-smartphone = Smartphone("Iphone", "15", "+123456789")
-smartphone.print_brand()
-smartphone.print_model()
-smartphone.print_number()
+#smartphone = Smartphone("Iphone", "15", "+123456789")
+#smartphone.print_brand()
+#smartphone.print_model()
+#smartphone.print_number()
