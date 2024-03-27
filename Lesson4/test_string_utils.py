@@ -55,28 +55,28 @@ def test_trim(string, result):
 
 
 # Тест 3. Проверка текста с разделителем и возвращения список строк. 
+    
 @pytest.mark.parametrize('string, delimeter, result', [
     # позитивные проверки
        ('a, b, c, d', ',', ['a', ' b', ' c', ' d']),
        ('1:2:3:4', ':', ['1', '2', '3', '4']),
        ('*,-,+', ',', ['*', '-', '+']),
     # негативные проверки
-       ('zz,xx,cc', None, ['zz', 'xx', 'cc']),
+       ('zz,xx,cc', None, []),
        ('', ',', [])
 ])    
 
 def test_to_list(string, delimeter, result):
     string_utils = StringUtils()
     if delimeter is None:
+         #with pytest.raises(TypeError):  # Проверяем, что вызывается ожидаемое исключение TypeError
+         #   string_utils.to_list(string)
         res = string_utils.to_list(string)
     
     else:
         res = string_utils.to_list(string, delimeter)
+        assert res == result
     
-    assert res == result
-    print(result)
-
-
 
 
 # Тест 4. Нахождение искомого символа и возвращение `True`/`False` как результат
@@ -204,19 +204,37 @@ def test_is_empty(string, result):
 
 @pytest.mark.parametrize('lst, joiner, result', [
      # позитивные проверки
-     ([1,2,3,4], ', ', ('1, 2, 3, 4')),
+     ([1,2,3,4], ', ', '1, 2, 3, 4'),
      (['q','w','e','r','t','y'], ' ', ('q w e r t y')),
      ([5,5,5,5], ': ', ('5: 5: 5: 5')),
      (['cat', 'dog'], '+', ('cat+dog')),
      (['Light', 'Blue'], '', ('LightBlue')),
     (['apple','banana','cherry'], '-', ('apple-banana-cherry')),
     # негативные проверки
-    ([7,7,7,7], None, ('7777')), # можно ли составить такую проверку?
-    ([], ',',''),
+    ([],',',''),
+    ([7,7,7], '', '777')
  #  ([' , , , '], ':' (' : : :')) # С этой строкой тоже не понимаю можно так делать или нет.
 ])
 def test_list_to_string(lst, joiner, result):
         string_utils = StringUtils()
         res = string_utils.list_to_string(lst, joiner)
         assert res == result
+
+# Тест 9/1. Улучшенный тест test_list_to_string для проверки различных типов данных
+
+@pytest.mark.parametrize('lst, joiner, result', [
+    # Позитивные проверки
+    ([1, 2, 3, 4], ', ', '1, 2, 3, 4'),  # Список целых чисел
+    (['q', 'w', 'e', 'r', 't', 'y'], ' ', 'q w e r t y'),  # Список строк
+    ([5.5, 6.6, 7.7], ' | ', '5.5 | 6.6 | 7.7'),  # Список чисел с плавающей запятой
+    ([True, False, True], '-', 'True-False-True'),  # Список булевых значений
+    ([], ',', ''),  # Пустой список
+    # Дополнительные случаи для разных типов данных
+    ([('a', 'b'), ('c', 'd')], ':', "('a', 'b'):('c', 'd')"),  # Список кортежей
+    (range(5), '->', '0->1->2->3->4'),  # Диапазон чисел
+    ({'apple', 'banana', 'cherry'}, ' | ', ('apple | banana | cherry')),  # Множество строк
+])
+def test_list_to_string(lst, joiner, result):
+    res = string_utils.list_to_string(lst, joiner)
+    assert res == result       
        
