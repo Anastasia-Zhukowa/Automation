@@ -1,0 +1,17 @@
+1. Функция "capitilize" не предусматривает вариант, когда второй символ является заглавным:
+
+Test case: string = "iPhone", result = "IPhone" 
+Expected Result: IPhone
+Actual Result: Iphone
+
+# Не уверена, что надо прикладывать именно эту часть ошибки. 
+
+AssertionError: assert 'Iphone' == 'IPhone'
+E
+E         - IPhone
+E         ?  ^
+E         + Iphone
+E         ?  ^
+
+test_string_utils.py:25: AssertionError
+
