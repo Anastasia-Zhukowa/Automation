@@ -18,7 +18,7 @@ driver = webdriver.Firefox()
 #Откройте страницу http://uitestingplayground.com/dynamicid
 driver.get("http://uitestingplayground.com/dynamicid")
 
-options = webdriver.ChromeOptions()
+options = webdriver.FirefoxOptions()
 options.add_argument('--ignore-ssl-errors=yes')
 options.add_argument('--ignore-certificate-errors')
 driver = webdriver.Chrome(options=options)

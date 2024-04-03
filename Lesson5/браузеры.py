@@ -65,21 +65,26 @@ sleep(2)
 
 driver.quit()   
 
-# задание 3. Клик по кнопке с CSS-классом. Я не совсем понимаю как 2 и 3 задание реализовать по-разному, поэтому просто продублировала код еще раз.
+# задание 3. Клик по кнопке с CSS-классом. 
 
-options = webdriver.ChromeOptions() # у меня возникает ошибка, говорящая о блокировке сайта. Поэтому такая заплатка.
+options = webdriver.ChromeOptions()
 options.add_argument('--ignore-ssl-errors=yes')
 options.add_argument('--ignore-certificate-errors')
+driver = webdriver.Chrome(options=options)
+
 
 driver = webdriver.Chrome(options=options)
 driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
 driver.maximize_window()
 
 for i in range(3):
-    driver.get("http://uitestingplayground.com/dynamicid")
-
-    blue_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "button.btn.btn-primary")))
-
+    blue_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CLASS_NAME, "btn-primary")))
+    blue_button.click()
+    options = webdriver.ChromeOptions()
+    options.add_argument('--ignore-ssl-errors=yes')
+    options.add_argument('--ignore-certificate-errors')
+    driver = webdriver.Chrome(options=options)
+    driver.quit()
 
 sleep(2)
 
@@ -174,10 +179,10 @@ driver = webdriver.Firefox()
 
 driver.get("http://uitestingplayground.com/dynamicid")
 
-options = webdriver.ChromeOptions()
+options = webdriver.FirefoxOptions()
 options.add_argument('--ignore-ssl-errors=yes')
 options.add_argument('--ignore-certificate-errors')
-driver = webdriver.Chrome(options=options)
+driver = webdriver.Firefox(options=options)
 
 for i in range(3):
     blue_button = driver.find_element(By.CSS_SELECTOR, "button[class='btn btn-primary']")
@@ -187,18 +192,18 @@ sleep(2)
 
 driver.quit()
 
-# задание 3. Клик по кнопке с CSS-классом. Я не совсем понимаю как 2 и 3 задание реализовать по-разному, поэтому просто продублировала код еще раз.
+# задание 3. Клик по кнопке с CSS-классом.
 
 geckodriver_path = "C:\\webdriver_firefox\\geckodriver\\geckodriver.exe"
 os.environ["webdriver.gecko.driver"] = geckodriver_path
 
 driver = webdriver.Firefox()
-driver.get("http://uitestingplayground.com/dynamicid")
+driver.get("http://uitestingplayground.com/classattr")
 
-options = webdriver.ChromeOptions()
+options = webdriver.FirefoxOptions()
 options.add_argument('--ignore-ssl-errors=yes')
 options.add_argument('--ignore-certificate-errors')
-driver = webdriver.Chrome(options=options)
+driver = webdriver.Firefox(options=options)
 
 for i in range(3):
     blue_button = driver.find_element(By.CSS_SELECTOR, "button[class='btn btn-primary']")
