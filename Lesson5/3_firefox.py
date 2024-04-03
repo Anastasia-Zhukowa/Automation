@@ -18,15 +18,20 @@ driver = webdriver.Firefox()
 #Откройте страницу 
 driver.get("http://uitestingplayground.com/classattr")
 
-options = webdriver.FirefoxOptions()
-options.add_argument('--ignore-ssl-errors=yes')
-options.add_argument('--ignore-certificate-errors')
-driver = webdriver.Firefox(options=options)
-
-for i in range(3):
-    blue_button = driver.find_element(By.CSS_SELECTOR, "button[class='btn btn-primary']")
-    blue_button.click()
+blue_button = driver.find_element(By.CLASS_NAME, "btn-primary")
+blue_button.click()
 
 sleep(2)
+
+ok_button = driver.find_element(By.ID, "modalOkButton")
+ok_button.click()
+
+sleep(2)
+
+for _ in range(3):
+    blue_button.click()
+    sleep(2)
+    ok_button.click()
+    sleep(2)
 
 driver.quit()

@@ -67,28 +67,26 @@ driver.quit()
 
 # задание 3. Клик по кнопке с CSS-классом. 
 
-options = webdriver.ChromeOptions()
-options.add_argument('--ignore-ssl-errors=yes')
-options.add_argument('--ignore-certificate-errors')
-driver = webdriver.Chrome(options=options)
+driver = webdriver.Chrome()
+driver.get("http://uitestingplayground.com/classattr")
 
-
-driver = webdriver.Chrome(options=options)
-driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
-driver.maximize_window()
-
-for i in range(3):
-    blue_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CLASS_NAME, "btn-primary")))
-    blue_button.click()
-    options = webdriver.ChromeOptions()
-    options.add_argument('--ignore-ssl-errors=yes')
-    options.add_argument('--ignore-certificate-errors')
-    driver = webdriver.Chrome(options=options)
-    driver.quit()
+blue_button = driver.find_element(By.CLASS_NAME, "btn-primary")
+blue_button.click()
 
 sleep(2)
 
-driver.quit()   
+ok_button = driver.find_element(By.ID, "modalOkButton")
+ok_button.click()
+
+sleep(2)
+
+for _ in range(3):
+    blue_button.click()
+    sleep(2)
+    ok_button.click()
+    sleep(2)
+
+driver.quit()
 
 # задание 4. Модальное окно
 driver = webdriver.Chrome()
@@ -200,14 +198,23 @@ os.environ["webdriver.gecko.driver"] = geckodriver_path
 driver = webdriver.Firefox()
 driver.get("http://uitestingplayground.com/classattr")
 
-options = webdriver.FirefoxOptions()
-options.add_argument('--ignore-ssl-errors=yes')
-options.add_argument('--ignore-certificate-errors')
-driver = webdriver.Firefox(options=options)
+blue_button = driver.find_element(By.CLASS_NAME, "btn-primary")
+blue_button.click()
 
-for i in range(3):
-    blue_button = driver.find_element(By.CSS_SELECTOR, "button[class='btn btn-primary']")
+sleep(2)
+
+ok_button = driver.find_element(By.ID, "modalOkButton")
+ok_button.click()
+
+sleep(2)
+
+for _ in range(3):
     blue_button.click()
+    sleep(2)
+    ok_button.click()
+    sleep(2)
+
+driver.quit()
 
 sleep(2)
 
