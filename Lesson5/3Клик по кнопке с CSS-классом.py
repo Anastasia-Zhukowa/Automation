@@ -23,14 +23,6 @@ for i in range(3):
 # Ждем 2 секунды
     sleep(2)
 
-# Нажимаем на кнопку "OK" в появившемся окне
-    #ok_button = driver.find_element(By.ID, "modalOkButton")
-    ok_button = driver.find_element(By.CLASS_NAME, "btn-primary")
-    ok_button.click()
-
-# Ждем 2 секунды
-    sleep(2)
-
 # Закрываем браузер
     driver.quit()
 

@@ -78,10 +78,8 @@ for i in range(3):
     sleep(2)
 
     # ok_button = driver.find_element(By.ID, "modalOkButton")
-    ok_button = driver.find_element(By.CLASS_NAME, "btn-primary")
-    ok_button.click()
-
-    sleep(2)
+    #ok_button = driver.find_element(By.CLASS_NAME, "btn-primary")
+    #ok_button.click()
 
     driver.quit()
 
