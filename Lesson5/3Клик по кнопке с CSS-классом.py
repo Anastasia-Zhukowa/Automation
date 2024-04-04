@@ -7,35 +7,31 @@ from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.keys import Keys
 
-# Создаем экземпляр драйвера браузера
-driver = webdriver.Chrome()
+
+for i in range(3):
+    # Создаем экземпляр драйвера браузера
+    driver = webdriver.Chrome()
 
 # Открываем сайт
-driver.get("http://uitestingplayground.com/classattr")
-
+    driver.get("http://uitestingplayground.com/classattr")
+    sleep(2)
 
 # Нажимаем на синюю кнопку
-blue_button = driver.find_element(By.CLASS_NAME, "btn-primary")
-blue_button.click()
+    blue_button = driver.find_element(By.CLASS_NAME, "btn-primary")
+    blue_button.click()
 
 # Ждем 2 секунды
-sleep(2)
+    sleep(2)
 
 # Нажимаем на кнопку "OK" в появившемся окне
-ok_button = driver.find_element(By.ID, "modalOkButton")
-ok_button.click()
+    #ok_button = driver.find_element(By.ID, "modalOkButton")
+    ok_button = driver.find_element(By.CLASS_NAME, "btn-primary")
+    ok_button.click()
 
 # Ждем 2 секунды
-sleep(2)
-
-# Повторяем цикл 3 раза
-for _ in range(3):
-    blue_button.click()
-    sleep(2)
-    ok_button.click()
     sleep(2)
 
 # Закрываем браузер
-driver.quit()
+    driver.quit()
 
 

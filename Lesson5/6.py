@@ -1,31 +1,38 @@
-from time import sleep
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
+from time import sleep
 from selenium.webdriver.common.keys import Keys
 
+# Запускаем браузер
+driver = webdriver.Chrome()
 
-# Открываем страницу
-driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+# Открываем страницу для входа
 driver.get("http://the-internet.herokuapp.com/login")
 
+sleep(2)
 
-# Находим поля для ввода имени пользователя и пароля
-usernamefield = driver.find_elements(By.CSS_SELECTOR, "username")
-passwordfield = driver.find_elements(By.CSS_SELECTOR, "password")
+username = '#username'
+username_input = driver.find_element(By.CSS_SELECTOR, username)
+username_input.send_keys("tomsmith")
+sleep(1)
 
+password = '#password'
+password_input = driver.find_element(By.CSS_SELECTOR, password)
+password_input.send_keys("SuperSecretPassword!")
 
-sleep(5)
-
-
-# Вводим данные пользователя
-
-
-usernamefield.send_keys("tomsmith") # здесь почему-то не подгружается библиотека с ключами.
-passwordfield.send_keys("SuperSecretPassword!")
+sleep(2)
 
 
-# Нажимаем кнопку Login
-loginbutton = driver.find_elements(By.CSS_SELECTOR, "button")
-loginbutton.click()
+# Нажимаем кнопку "Login"
+login_button = "button[type='submit']"
+login_button = driver.find_element(By.CSS_SELECTOR, login_button)
+login_button.click()
+
+sleep(2)
+
+# Закрываем браузер
+driver.quit()
+

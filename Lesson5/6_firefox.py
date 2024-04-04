@@ -21,18 +21,27 @@ driver = webdriver.Firefox()
 # Откройте страницу
 driver.get("http://the-internet.herokuapp.com/login")
 
-# Находим поля для ввода имени пользователя и пароля
-usernamefield = driver.find_elements(By.CSS_SELECTOR, "username")
-passwordfield = driver.find_elements(By.CSS_SELECTOR, "password")
+sleep(2)
 
-sleep(5)
+username = '#username'
+username_input = driver.find_element(By.CSS_SELECTOR, username)
+username_input.send_keys("tomsmith")
+sleep(1)
 
-# Вводим данные пользователя
+password = '#password'
+password_input = driver.find_element(By.CSS_SELECTOR, password)
+password_input.send_keys("SuperSecretPassword!")
 
-usernamefield.send_keys("tomsmith") # здесь почему-то не подгружается библиотека с ключами.
-passwordfield.send_keys("SuperSecretPassword!")
+sleep(2)
 
 
-# Нажимаем кнопку Login
-loginbutton = driver.find_elements(By.CSS_SELECTOR, "button")
-loginbutton.click()
+# Нажимаем кнопку "Login"
+login_button = "button[type='submit']"
+login_button = driver.find_element(By.CSS_SELECTOR, login_button)
+login_button.click()
+
+sleep(2)
+
+# Закрываем браузер
+driver.quit()
+
