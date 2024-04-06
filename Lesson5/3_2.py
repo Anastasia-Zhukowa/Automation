@@ -1,7 +1,5 @@
 from selenium import webdriver
 from time import sleep
-from time import sleep
-from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -13,27 +11,22 @@ from selenium.webdriver.common.by import By
 import time
 
 
-
-# Создаем экземпляр драйвера Chrome
+# Запуск браузера
 driver = webdriver.Chrome()
+driver.get("http://uitestingplayground.com/ajax")
 
-# Запускаем цикл 3 раза
-for _ in range(3):
-    driver.get("http://uitestingplayground.com/classattr")
+# Нажатие на синюю кнопку
+driver.find_element(By.ID, "ajaxButton").click()
 
-    # Ждем, пока кнопка синего цвета станет кликабельной
-    blue_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "btn-primary")))
-    sleep(2)
-    # Находим и нажимаем на синюю кнопку
-    blue_button = driver.find_element(By.CLASS_NAME, "btn-primary")
-    blue_button.click()
+# Ожидание появления зеленой плашки
+wait = WebDriverWait(driver, 10)
+green_box = wait.until(EC.visibility_of_element_located((By.ID, "ajaxDiv")))
 
-    sleep(2)
-    # Переключаемся на алерт и нажимаем на кнопку "OK"
-    ok_button = driver.find_element(By.ID, "modalOkButton")
-    ok_button.click()
-    
-    time.sleep(2)  # Делаем паузу для наглядности
+# Получение текста из зеленой плашки
+text = green_box.text
 
-# Закрываем драйвер
+# Вывод текста в консоль
+print(text)
+
+# Закрытие браузера
 driver.quit()
