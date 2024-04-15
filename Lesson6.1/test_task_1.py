@@ -46,15 +46,15 @@ def test_form_validation(driver):
     button.click()
 
     zip_code_field = WebDriverWait(driver, 10).until(
-    EC.visibility_of_element_located((By.CSS_SELECTOR, '#zip-code'))
-)
+    EC.visibility_of_element_located((By.CSS_SELECTOR, '#zip-code')))
+
     assert zip_code_field.value_of_css_property('background-color') == 'rgba(248, 215, 218, 1)'
- 
+     
     fields = [first_name, last_name, address, email, phone, city, country, job, company]
     for field in fields:
-        field_error = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.CSS_SELECTOR, field.get_attribute("div[class='alert py-2 alert-success']")))
+        field_error = WebDriverWait(driver, 10).until(
+    EC.visibility_of_element_located((By.CSS_SELECTOR, ("div.alert.py-2.alert-success")))
 )
-
-                                                      
+    
     assert field_error.value_of_css_property('background-color') == 'rgba(209, 231, 221, 1)'
     driver.quit()
