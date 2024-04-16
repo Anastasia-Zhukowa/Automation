@@ -50,7 +50,6 @@ sleep(2)
 checkout =  WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, 'checkout')))
 checkout.click()
 
-sleep(2)
 
 first_name = '#first-name'
 first_name_input = driver.find_element(By.CSS_SELECTOR, first_name)
