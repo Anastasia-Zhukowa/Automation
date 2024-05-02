@@ -71,33 +71,33 @@ def test_get_employee_id():
     assert employee_id["isActive"] == True
 
 def test_update_employee():
-    user =  'stella'
-    password = 'sun-fairy'
+    user =  'roxy'
+    password = 'animal-fairy'
     api.get_token(user, password)
-    name = "Ромалы"
-    description = "Гадаю недорого карты-таро"
+    name = "Юстиниан"
+    description = "Византийская империя"
     company_id = api.create_new_company(name, description)
     employee = api.add_employee(
         id="6699",
-        first_name="Roza",
-        last_name="Badoni",
-        middle_name="Abramovna",
+        first_name="Константин",
+        last_name="Перов",
+        middle_name="Иваныч",
         company_id=company_id,
-        mail="GypsiesRussia@mail.ru",
-        employee_url="https://Gypsies of Russia.com",
-        phone="89062544759",
-        birthdate="1992-11-11T11:16:23.575Z",
+        mail="testqwerty@mail.ru",
+        employee_url="https://test.com",
+        phone="89067894512",
+        birthdate="1977-01-11T11:16:23.575Z",
         is_active=True
 )
     api.change_employee(
         id=employee,
-        change_lastName="Govani",
-        change_email="GypsiesArmenia@mail.am",
-        change_url="https://Gypsies of Armenia.com",
-        change_phone="83745658955",
+        change_lastName="Dimon",
+        change_email="admon@mail.am",
+        change_url="https://haha.com",
+        change_phone="99099090099",
         change_active=False
 )
     id_update_employee = api.get_employee_id(employee)
     assert id_update_employee["isActive"] == False
-    assert id_update_employee["email"] == "GypsiesArmenia@mail.am"
-    assert id_update_employee["avatar_url"] == "https://Gypsies of Armenia.com"
+    assert id_update_employee["email"] == "admon@mail.am"
+    assert id_update_employee["avatar_url"] == "https://haha.com"
