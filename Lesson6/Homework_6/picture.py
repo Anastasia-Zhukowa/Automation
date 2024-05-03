@@ -27,4 +27,3 @@ print(image_src)
     # Закрываем браузер
 driver.quit()
 
-#<img id="award" alt="award" src="img/award.png">

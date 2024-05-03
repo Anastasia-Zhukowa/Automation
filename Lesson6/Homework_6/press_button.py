@@ -4,13 +4,9 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 
-#options = webdriver.ChromeOptions() # у меня возникает ошибка, говорящая о блокировке сайта. Поэтому такая заплатка.
-#options.add_argument('--ignore-ssl-errors=yes')
-#options.add_argument('--ignore-certificate-errors')
 
 # создаем новый экземпляр двайвера
-driver = webdriver.Chrome(
-service=ChromeService(ChromeDriverManager().install()))
+driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
 
 # прописываем драйвер ожидания
 driver.implicitly_wait(20)
