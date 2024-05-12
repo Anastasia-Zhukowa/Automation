@@ -1,5 +1,9 @@
 import requests
 import pytest
+import uuid
+from faker import Faker
+
+fake = Faker()
 
 class Company:
 
@@ -35,18 +39,18 @@ class Company:
         resp = requests.get(f"{self.url}/employee/{id_employee}")
         return resp.json()
 
-    def add_new_employee(self, new_id, name, last_name):
+    def add_new_employee(self, new_id, first_name, last_name):
         employee = {
-            "id": 1,
-            "firstName": name,
+            "id": new_id,
+            "firstName": first_name,
             "lastName": last_name,
             "middleName": "-",
             "companyId": new_id,
-            "email": "test@test.ru",
+            "email": fake.email(),
             "url": "string",
-            "phone": "89999999999",
-            "birthdate": "2023-12-25T18:54:13.783Z",
-            "isActive": 'true'
+            "phone": fake.phone_number(),
+            "birthdate": fake.date_time().isoformat(),
+            "isActive": fake.boolean()
         }
 
         my_headers = {}
@@ -58,7 +62,7 @@ class Company:
         user_info = {
             "lastName": last_name,
             "email": email,
-            "isActive": True
+            "isActive": fake.boolean()
         }
 
         my_headers = {}
