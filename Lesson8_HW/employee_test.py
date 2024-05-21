@@ -7,16 +7,16 @@ fake = Faker()
 api = Company("https://x-clients-be.onrender.com")
 
 def test_get_list_of_employees():
-    name = "SkyPro"
-    descr = "testing"
+    name = fake.company()
+    descr = fake.bs()
     company = api.create_company(name, descr)
     new_id = company["id"]
     employee_list = api.get_list_employee(new_id)
     assert len(employee_list) == 0
 
 def test_add_new_employee():
-    name = "SkyPro"
-    descr = "testing"
+    name = fake.company()
+    descr = fake.bs()
     company = api.create_company(name, descr)
     new_id = company["id"]
     first_name = fake.first_name()
@@ -31,8 +31,8 @@ def test_add_new_employee():
     assert resp[0]["lastName"] == last_name
 
 def test_get_employee_by_id():
-    name = "SkyPro"
-    descr = "testing"
+    name = fake.company()
+    descr = fake.bs()
     company = api.create_company(name, descr)
     new_id = company["id"]
     first_name = fake.first_name()
@@ -44,8 +44,8 @@ def test_get_employee_by_id():
     assert get_info["lastName"] == last_name
 
 def test_change_employee_info():
-    name = "SkyPro"
-    descr = "testing"
+    name = fake.company()
+    descr = fake.bs()
     company = api.create_company(name, descr)
     new_id = company["id"]
     first_name = fake.first_name()
